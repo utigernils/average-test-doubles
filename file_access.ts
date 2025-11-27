@@ -1,7 +1,9 @@
-export class FileAccess {
+import { NumberSource } from "./number_source.ts";
+
+export class FileAccess implements NumberSource {
   constructor(private path: string) {}
 
-  public async readNumbers() {
+  public async readNumbers(): Promise<number[]> {
     const numbers: Array<number> = [];
     const content: string = await Deno.readTextFile(this.path);
     const lines: Array<string> = content.split("\n");
